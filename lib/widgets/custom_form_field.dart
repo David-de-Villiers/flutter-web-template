@@ -12,6 +12,7 @@ class CustomFormField extends StatelessWidget {
     required this.validationFunction,
     required this.saveFunction,
     this.icon = CupertinoIcons.circle,
+    this.hint = "",
     this.obscureText = false
   }) : super(key: key);
 
@@ -20,34 +21,39 @@ class CustomFormField extends StatelessWidget {
   final Function validationFunction;
   final Function saveFunction;
   final IconData icon;
+  final String hint;
   final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: textController,
-      obscureText: obscureText,
-      cursorColor: Colors.black,
-      decoration: InputDecoration(
-          label: Icon(icon),
-          // labelText: label,
-          // labelStyle: TextStyle(color: Colors.black),
-          fillColor: Colors.transparent,
-          focusColor: Colors.black,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(24),
-            borderSide: BorderSide(
-              color: Colors.black,
+    return Material(
+      elevation: 8,
+      child: TextFormField(
+        controller: textController,
+        obscureText: obscureText,
+        cursorColor: Colors.black,
+        decoration: InputDecoration(
+            label: Icon(icon),
+            hintText: hint,
+            // labelText: label,
+            // labelStyle: TextStyle(color: Colors.black),
+            fillColor: Colors.transparent,
+            focusColor: Colors.black,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(24),
+              borderSide: BorderSide(
+                color: Colors.black,
+              ),
             ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(0),
-          ),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.black))),
-      validator: (val) => validationFunction(val),
-      onSaved: (val) => saveFunction(val),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(0),
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.black))),
+        validator: (val) => validationFunction(val),
+        onSaved: (val) => saveFunction(val),
+      ),
     );
   }
 }

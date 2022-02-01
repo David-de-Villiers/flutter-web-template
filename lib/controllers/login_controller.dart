@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +16,7 @@ class LoginController extends GetxController {
   String passwordLabel = "password";
 
   void submitCredentials() {
+    log("Submit Credentials Function triggered");
     final form = formKey.currentState;
     if (form != null && form.validate()) {
       form.save();
@@ -23,7 +26,16 @@ class LoginController extends GetxController {
 
   void login() {
     // Complete Firebase Login
-    Get.snackbar("Alert", "Login Succesful");
+    Get.snackbar(
+        "Alert",
+        "Login Succesful",
+        snackPosition: SnackPosition.BOTTOM,
+        borderRadius: 0,
+        // borderColor: Colors.black,
+        // borderWidth: 2,
+      leftBarIndicatorColor: Colors.black,
+
+    );
   }
 
   String? emailValidation(String? val) => !EmailValidator.validate(val!, true) ? "Invalid e-mail" : null;

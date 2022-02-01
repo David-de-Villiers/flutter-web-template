@@ -41,6 +41,7 @@ class LoginPage extends GetResponsiveView<LoginController> {
                     classController: controller,
                     validationFunction: (val) => controller.emailValidation(val),
                     saveFunction: (val) => controller.emailSave(val),
+                    hint: "e-mail",
                     icon: CupertinoIcons.mail,
                   ),
                   SizedBox(height: 20),
@@ -50,9 +51,11 @@ class LoginPage extends GetResponsiveView<LoginController> {
                     validationFunction: (val) => controller.passwordValidation(val),
                     saveFunction: (val) => controller.passwordSave(val),
                     icon: CupertinoIcons.lock,
+                    hint: "password",
+                    obscureText: true,
                   ),
-                  SizedBox(height: 20),
-                  CustomCircleButton(icon: Icons.check)
+                  SizedBox(height: 48),
+                  CustomCircleButton(icon: Icons.check, onPressed: () => controller.submitCredentials())
                 ],
               ),
             ),
