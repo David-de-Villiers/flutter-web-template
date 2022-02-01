@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,34 +26,54 @@ class CustomFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 8,
-      child: TextFormField(
-        controller: textController,
-        obscureText: obscureText,
-        cursorColor: Colors.black,
-        decoration: InputDecoration(
-            label: Icon(icon),
-            hintText: hint,
-            // labelText: label,
-            // labelStyle: TextStyle(color: Colors.black),
-            fillColor: Colors.transparent,
-            focusColor: Colors.black,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(24),
-              borderSide: BorderSide(
-                color: Colors.black,
+    return Stack(
+      children: [
+        Container(
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.zero,
+            boxShadow: [
+              BoxShadow(color: Colors.grey, blurRadius: 4, spreadRadius: 2, offset: Offset(0, 4)),
+            ]
+          ),
+        ),
+        TextFormField(
+          controller: textController,
+          obscureText: obscureText,
+          cursorColor: Colors.black,
+          decoration: InputDecoration(
+              label: Icon(icon),
+              hintText: hint,
+              // labelText: label,
+              // labelStyle: TextStyle(color: Colors.black),
+              fillColor: Colors.white,
+              filled: true,
+              focusColor: Colors.black,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(24),
+                borderSide: BorderSide(
+                  color: Colors.black,
+                ),
               ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(0),
-            ),
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.black))),
-        validator: (val) => validationFunction(val),
-        onSaved: (val) => saveFunction(val),
-      ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(0),
+                  borderSide: BorderSide(color: Colors.black)),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(0),
+                  borderSide: BorderSide(color: Colors.red)
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(0),
+                  borderSide: BorderSide(color: Colors.red)
+              ),
+          ),
+          validator: (val) => validationFunction(val),
+          onSaved: (val) => saveFunction(val),
+        ),
+      ]
     );
   }
 }

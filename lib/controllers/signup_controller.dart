@@ -4,7 +4,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginController extends GetxController {
+class SignUpController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final TextEditingController emailController = TextEditingController();
@@ -14,29 +14,26 @@ class LoginController extends GetxController {
   String password = "";
   String emailLabel = "e-mail";
   String passwordLabel = "password";
-  RxString emailError = "".obs;
-  RxString passwordError = "".obs;
 
   void submitCredentials() {
-    log("Submit Credentials Function triggered");
     final form = formKey.currentState;
     if (form != null && form.validate()) {
       form.save();
-      login();
+      register();
     }
   }
 
-  void login() {
-    // Complete Firebase Login
+  void register() {
+    // Complete Firebase Registration
     Get.snackbar(
-        "Alert",
-        "Login Succesful",
-        snackPosition: SnackPosition.BOTTOM,
-        borderRadius: 0,
-        // borderColor: Colors.black,
-        // borderWidth: 2,
-      leftBarIndicatorColor: Colors.black,
-
+      "Alert",
+      "Registration Successful",
+      snackPosition: SnackPosition.BOTTOM,
+      borderRadius: 0,
+      borderColor: Colors.black,
+      borderWidth: 2,
+      // leftBarIndicatorColor: Colors.green,
+      backgroundColor: Colors.white
     );
   }
 
