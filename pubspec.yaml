@@ -37,6 +37,8 @@ dependencies:
   get: ^4.6.1
   sizer: ^2.0.15
   google_fonts: ^2.2.0
+  email_validator: ^2.0.1
+  flutter_neumorphic: ^3.2.0
 
 dev_dependencies:
   flutter_test:
